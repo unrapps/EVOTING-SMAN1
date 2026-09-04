@@ -4,24 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>E-Voting OSIS-MPK SMAN 1 Kota Sukabumi 2026</title>
+
+  <!-- CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- JS CDN (SweetAlert2, Chart.js & Plugin Datalabels) -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
   <style>
     :root {
+      /* Palette Biru Gradasi Modern (High Contrast) */
       --hero-bg: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+      --accent-blue: #2563eb;
       --card-blue-bg: rgba(255, 255, 255, 0.12);
     }
 
     body { 
-      background: #f0f9ff;
+      background-image: url('https://i.pinimg.com/1200x/8e/f8/c4/8ef8c40ce3b37e092e3cd2c0523137a2.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       min-height: 100vh;
       margin: 0;
     }
 
+    /* Logo Styling */
     .logo-landing {
       width: 105px;
       height: 105px;
@@ -29,7 +41,9 @@
       filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
       transition: transform 0.4s ease;
     }
-    .logo-landing:hover { transform: scale(1.08) rotate(2deg); }
+    .logo-landing:hover {
+      transform: scale(1.08) rotate(2deg);
+    }
 
     .logo-header {
       width: 45px;
@@ -38,8 +52,10 @@
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
     }
 
+    /* Landing Page Hero Styling */
     .hero-container {
-      background: var(--hero-bg);
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(4px);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -49,6 +65,7 @@
       color: #ffffff;
     }
 
+    /* Lingkaran Dekoratif Soft */
     .circle-deco {
       position: absolute;
       border-radius: 50%;
@@ -59,6 +76,7 @@
     .circle-2 { width: 300px; height: 300px; bottom: 60px; right: 15%; }
     .circle-3 { width: 220px; height: 220px; bottom: 160px; left: -60px; }
 
+    /* Feature Card Glassmorphism & Interaktif */
     .feature-card {
       background: var(--card-blue-bg);
       backdrop-filter: blur(14px);
@@ -76,6 +94,7 @@
       box-shadow: 0 20px 35px rgba(37, 99, 235, 0.3);
     }
 
+    /* Animation Icon Mengapung Interaktif */
     .icon-box {
       width: 65px;
       height: 65px;
@@ -88,12 +107,14 @@
       margin: 0 auto 20px auto;
       font-size: 1.6rem;
       animation: floatIcon 3s ease-in-out infinite;
+      transition: transform 0.3s ease, background 0.3s ease;
       color: #ffffff;
     }
     
     .feature-card:hover .icon-box {
       animation: pulseShake 0.6s ease-in-out infinite alternate;
       background: rgba(255, 255, 255, 0.35);
+      color: #ffffff;
     }
 
     @keyframes floatIcon {
@@ -106,6 +127,7 @@
       100% { transform: scale(1.1) rotate(5deg); }
     }
 
+    /* Button Utama Landing */
     .btn-hero {
       background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
       color: #ffffff;
@@ -120,37 +142,15 @@
       color: #ffffff;
       transform: translateY(-3px) scale(1.03);
       box-shadow: 0 18px 35px rgba(29, 78, 216, 0.5);
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
     }
 
+    /* Standard Cards Layout untuk Form & Voting */
     .header-bg { 
       background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); 
       color: #ffffff; 
       box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
     }
-    
-    .ticker-wrapper {
-      width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      margin-top: 4px;
-    }
-
-    .ticker-text {
-      display: inline-block;
-      padding-left: 100%;
-      color: #fbbf24;
-      font-weight: 700;
-      font-style: italic;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
-      animation: marquee 12s linear infinite;
-    }
-
-    @keyframes marquee {
-      0%   { transform: translate(0, 0); }
-      100% { transform: translate(-100%, 0); }
-    }
-
     .card-custom {
       background: rgba(255, 255, 255, 0.95);
       border: 1px solid rgba(191, 219, 254, 0.8);
@@ -180,6 +180,7 @@
       height: 100%;
       object-fit: contain; 
       padding: 12px;
+      transition: transform 0.5s ease;
     }
     .badge-no-urut {
       position: absolute;
@@ -227,11 +228,47 @@
       70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
       100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
+
+    /* Style & Animasi Teks Berjalan Modern */
+    .ticker-wrapper {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      margin-top: 4px;
+    }
+
+    .ticker-text {
+      display: inline-block;
+      padding-left: 100%;
+      color: #fbbf24;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      animation: marquee 12s linear infinite;
+    }
+
+    @keyframes marquee {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(-100%, 0); }
+    }
+
+    /* Style Kontras Header Admin */
+    .admin-header-box {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .text-shadow-sm {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
   </style>
 </head>
 <body>
 
-  <!-- LANDING PAGE -->
+  <!-- ==================== 0. LANDING PAGE ==================== -->
   <div id="view-landing" class="hero-container">
     <div class="circle-deco circle-1"></div>
     <div class="circle-deco circle-2"></div>
@@ -246,29 +283,35 @@
       <h3 class="fw-normal text-white-50 mb-3">SMA Negeri 1 Kota Sukabumi Tahun 2026</h3>
       
       <p class="lead text-white-50 mx-auto mb-4" style="max-width: 650px; font-size: 1.05rem;">
-        Platform voting revolusioner dengan teknologi terdepan untuk demokrasi yang transparan dan modern
+        Platform voting revolusioner untuk demokrasi yang transparan dan modern
       </p>
 
       <div class="row g-4 justify-content-center mb-5">
         <div class="col-md-4">
           <div class="feature-card">
-            <div class="icon-box"><i class="fa-shield-halved fa-regular"></i></div>
+            <div class="icon-box">
+              <i class="fa-shield-halved fa-regular"></i>
+            </div>
             <h5 class="fw-bold mb-2 text-white">Keamanan Tinggi</h5>
-            <p class="small text-white-50 m-0">Sistem enkripsi berlapis dan autentikasi multi-faktor untuk perlindungan maksimal</p>
+            <p class="small text-white-50 m-0">Sistem enkripsi dan autentikasi untuk perlindungan maksimal</p>
           </div>
         </div>
         <div class="col-md-4">
           <div class="feature-card">
-            <div class="icon-box" style="animation-delay: 0.5s;"><i class="fa-chart-simple fa-solid"></i></div>
+            <div class="icon-box" style="animation-delay: 0.5s;">
+              <i class="fa-chart-simple fa-solid"></i>
+            </div>
             <h5 class="fw-bold mb-2 text-white">Analytics Real-time</h5>
-            <p class="small text-white-50 m-0">Dashboard interaktif dengan visualisasi data yang memukau dan laporan komprehensif</p>
+            <p class="small text-white-50 m-0">Dashboard interaktif dengan visualisasi data dan laporan komprehensif</p>
           </div>
         </div>
         <div class="col-md-4">
           <div class="feature-card">
-            <div class="icon-box" style="animation-delay: 1s;"><i class="fa-mobile-screen-button fa-solid"></i></div>
+            <div class="icon-box" style="animation-delay: 1s;">
+              <i class="fa-mobile-screen-button fa-solid"></i>
+            </div>
             <h5 class="fw-bold mb-2 text-white">Mobile-First</h5>
-            <p class="small text-white-50 m-0">Responsive design yang sempurna di semua perangkat dengan performa optimal</p>
+            <p class="small text-white-50 m-0">Responsive design di semua perangkat dengan performa optimal</p>
           </div>
         </div>
       </div>
@@ -283,9 +326,11 @@
     </div>
   </div>
 
-  <!-- APP CONTAINER -->
+
+  <!-- Container untuk View Aplikasi (Login, Voting, Admin) -->
   <div id="app-container" class="d-none">
 
+    <!-- Header Banner Aplikasi -->
     <div class="header-bg p-3 p-md-4 mb-5">
       <div class="container d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center gap-3 overflow-hidden" style="max-width: 75%;">
@@ -293,8 +338,11 @@
           <div class="w-100 overflow-hidden">
             <h4 class="fw-bold m-0">Voting Digital OSIS-MPK</h4>
             <p class="m-0 text-white-50 small">SMA Negeri 1 Kota Sukabumi Tahun 2026</p>
+            
             <div class="ticker-wrapper">
-              <span class="ticker-text">The Leading School Distinct as The Winner</span>
+              <span class="ticker-text">
+                The Leading School Distinct as The Winner
+              </span>
             </div>
           </div>
         </div>
@@ -306,7 +354,7 @@
 
     <div class="container pb-5">
 
-      <!-- VIEW LOGIN -->
+      <!-- ==================== 1. VIEW LOGIN SISWA ==================== -->
       <div id="view-login" class="row justify-content-center">
         <div class="col-md-5">
           <div class="card card-custom p-4 p-md-5">
@@ -315,7 +363,7 @@
                 <i class="fa-solid fa-user-check fa-2x"></i>
               </div>
               <h4 class="fw-bold">Akses Hak Pilih</h4>
-              <p class="text-muted small">Masukkan NISN untuk mulai voting</p>
+              <p class="text-muted small">Masukkan NISN untuk memulai voting</p>
             </div>
             
             <div class="mb-4">
@@ -339,7 +387,7 @@
         </div>
       </div>
 
-      <!-- VIEW VOTING -->
+      <!-- ==================== 2. VIEW SURAT SUARA (VOTING) ==================== -->
       <div id="view-voting" class="d-none">
         <div class="card card-custom p-3 mb-4">
           <div class="d-flex justify-content-between align-items-center">
@@ -362,7 +410,7 @@
         <div id="alert-sudah-memilih" class="alert alert-warning border-0 shadow-sm rounded-4 text-center p-4 mb-4 d-none">
           <i class="fa-solid fa-circle-check fa-3x text-warning mb-2"></i>
           <h4 class="fw-bold">Anda Sudah Menggunakan Hak Pilih!</h4>
-          <p class="mb-0 text-muted">Terima kasih atas partisipasi Anda dalam Pemilihan OSIS & MPK.</p>
+          <p class="mb-0 text-muted">Terima kasih atas partisipasi Anda dalam Pemilihan OSIS & MPK. Anda tidak dapat melakukan pemilihan ulang.</p>
         </div>
 
         <div id="header-instruksi" class="text-center mb-4">
@@ -373,60 +421,42 @@
         <div id="paslon-container" class="row g-4 justify-content-center"></div>
       </div>
 
-      <!-- VIEW ADMIN -->
+      <!-- ==================== 3. VIEW DASHBOARD ADMIN ==================== -->
       <div id="view-admin" class="d-none">
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4 p-3 rounded-4 admin-header-box">
           <div>
-            <h3 class="fw-bold m-0">Dashboard Quick Count</h3>
-            <p class="text-muted small m-0">Pantau perolehan suara & partisipasi kelas secara real-time</p>
+            <h3 class="fw-bold m-0 text-white text-shadow-sm">Dashboard Quick Count</h3>
+            <p class="text-white-50 small m-0">Pantau perolehan suara & partisipasi kelas secara real-time</p>
           </div>
-          <div>
-            <button onclick="muatDataAdmin()" class="btn btn-outline-primary rounded-3 me-2" style="border-color: #2563eb; color: #2563eb;">
+          <div class="d-flex gap-2">
+            <button onclick="muatDataAdmin()" class="btn btn-primary rounded-3 shadow-sm font-semibold">
               <i class="fa-solid fa-rotate me-1"></i>Refresh
             </button>
-            <button onclick="bukaHalamanLogin()" class="btn btn-secondary rounded-3">
+            <button onclick="bukaHalamanLogin()" class="btn btn-light rounded-3 shadow-sm">
               <i class="fa-solid fa-arrow-left me-1"></i>Kembali
             </button>
           </div>
         </div>
 
-        <div class="row g-4 mb-4">
-          <div class="col-lg-6">
-            <div class="card card-custom p-4 h-100">
-              <canvas id="quickCountChart" style="max-height: 320px;"></canvas>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="card card-custom p-4 h-100">
-              <canvas id="partisipasiKelasChart" style="max-height: 320px;"></canvas>
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-custom p-4">
-          <div class="row mb-3 align-items-center">
-            <div class="col-md-6">
-              <h5 class="fw-bold m-0"><i class="fa-solid fa-users-viewfinder me-2"></i>Status Kehadiran Pemilih</h5>
-            </div>
-            <div class="col-md-6">
-              <div class="input-group">
-                <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
-                <input type="text" id="filterKelas" class="form-control bg-light border-start-0" onkeyup="filterTabel()" placeholder="Cari Nama atau Kelas...">
+        <div class="row g-4">
+          <!-- 1. GRAFIK QUICK COUNT PASLON -->
+          <div class="col-12">
+            <div class="card-custom p-4 shadow-sm h-100">
+              <h5 class="fw-bold text-center mb-4 text-dark">Hasil Quick Count Paslon</h5>
+              <div style="position: relative; height: 350px;">
+                <canvas id="chartPaslon"></canvas>
               </div>
             </div>
           </div>
-          <div class="table-responsive">
-            <table class="table table-hover align-middle" id="tabelPemilih">
-              <thead class="table-light">
-                <tr>
-                  <th>NISN</th>
-                  <th>Nama Siswa</th>
-                  <th>Kelas</th>
-                  <th>Status Hak Pilih</th>
-                </tr>
-              </thead>
-              <tbody id="bodyTabelDpt"></tbody>
-            </table>
+
+          <!-- 2. GRAFIK PARTISIPASI PEMILIH -->
+          <div class="col-12">
+            <div class="card-custom p-4 shadow-sm h-100">
+              <h5 class="fw-bold text-center mb-4 text-dark">Tingkat Partisipasi Pemilih Per Kelas</h5>
+              <div style="position: relative; height: 400px;">
+                <canvas id="chartPartisipasi"></canvas>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -434,22 +464,73 @@
     </div>
   </div>
 
+  <!-- SCRIPT JAVASCRIPT UTAMA -->
   <script>
-    // PASTEKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxErBT10zpsqrpCEQ3fdcRRn6WuSpsKZkLY1UB9q0O-lQbPipgzSDrORWtxaadtxQ0W/exec";
+    // URL Deployment Web App Google Apps Script
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxeCd_JfhNVDkXxgnB0IvsD1lcuHaGJ3QD6a2mV1aVkvj-CPrdo-Dg3xBhNZFDBUCvg6w/exec";
+
+    // Mocking/Bridge google.script.run menggunakan fetch API
+    const google = {
+      script: {
+        run: {
+          withSuccessHandler: function(callback) {
+            return {
+              loginSiswa: function(nisn) {
+                fetch(GAS_WEB_APP_URL, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                  body: JSON.stringify({ action: 'loginSiswa', nisn: nisn })
+                })
+                .then(res => res.json())
+                .then(data => callback(data))
+                .catch(err => {
+                  Swal.close();
+                  Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: err.message });
+                });
+              },
+              getPaslonData: function() {
+                fetch(`${GAS_WEB_APP_URL}?action=getPaslonData`)
+                .then(res => res.json())
+                .then(data => callback(data))
+                .catch(err => {
+                  Swal.close();
+                  Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: err.message });
+                });
+              },
+              submitSuara: function(nisn, idPaslon) {
+                fetch(GAS_WEB_APP_URL, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                  body: JSON.stringify({ action: 'submitSuara', nisn: nisn, idPaslon: idPaslon })
+                })
+                .then(res => res.json())
+                .then(data => callback(data))
+                .catch(err => {
+                  Swal.close();
+                  Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: err.message });
+                });
+              },
+              getAdminDashboardData: function() {
+                fetch(`${GAS_WEB_APP_URL}?action=getAdminDashboardData`)
+                .then(res => res.json())
+                .then(data => callback(data))
+                .catch(err => {
+                  Swal.close();
+                  Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: err.message });
+                });
+              }
+            };
+          }
+        }
+      }
+    };
+
+    // Register Plugin Datalabels Chart.js
+    Chart.register(ChartDataLabels);
 
     let activeUser = null;
-    let chartInstance = null;
-    let chartKelasInstance = null;
-
-    // Helper untuk memanggil backend Apps Script lewat fetch
-    async function callBackend(payload) {
-      const response = await fetch(GAS_WEB_APP_URL, {
-        method: "POST",
-        body: JSON.stringify(payload)
-      });
-      return await response.json();
-    }
+    let chartPaslonInstance = null;
+    let chartPartisipasiInstance = null;
 
     function bukaLandingPage() {
       document.getElementById('view-landing').classList.remove('d-none');
@@ -467,13 +548,12 @@
       document.getElementById(id).classList.remove('d-none');
     }
 
-    async function prosesLogin() {
+    function prosesLogin() {
       const nisn = document.getElementById('inputNisn').value.trim();
       if (!nisn) return Swal.fire({ icon: 'warning', title: 'Perhatian', text: 'Silakan masukkan NISN Anda!' });
 
       Swal.showLoading();
-      try {
-        const res = await callBackend({ action: 'loginSiswa', nisn: nisn });
+      google.script.run.withSuccessHandler(res => {
         Swal.close();
         if (res.success) {
           activeUser = res.siswa;
@@ -484,9 +564,7 @@
         } else {
           Swal.fire({ icon: 'error', title: 'Gagal Login', text: res.message });
         }
-      } catch (err) {
-        Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: err.toString() });
-      }
+      }).loginSiswa(nisn);
     }
 
     function logoutSiswa() {
@@ -495,10 +573,9 @@
       bukaHalamanLogin();
     }
 
-    async function muatPaslon() {
+    function muatPaslon() {
       Swal.showLoading();
-      try {
-        const dataPaslon = await callBackend({ action: 'getPaslonData' });
+      google.script.run.withSuccessHandler(dataPaslon => {
         Swal.close();
         const container = document.getElementById('paslon-container');
         const alertSudah = document.getElementById('alert-sudah-memilih');
@@ -536,9 +613,7 @@
           `;
         });
         showSection('view-voting');
-      } catch (err) {
-        Swal.fire({ icon: 'error', title: 'Gagal Memuat Data', text: err.toString() });
-      }
+      }).getPaslonData();
     }
 
     function konfirmasiPilih(idPaslon, namaPaslon) {
@@ -551,11 +626,10 @@
         cancelButtonColor: '#64748b',
         confirmButtonText: 'Ya, Kirim Suara',
         cancelButtonText: 'Batal'
-      }).then(async result => {
+      }).then(result => {
         if (result.isConfirmed) {
           Swal.showLoading();
-          try {
-            const res = await callBackend({ action: 'submitSuara', nisn: activeUser.nisn, idPaslon: idPaslon });
+          google.script.run.withSuccessHandler(res => {
             Swal.close();
             if (res.success) {
               Swal.fire({ icon: 'success', title: 'Berhasil!', text: res.message }).then(() => {
@@ -565,9 +639,7 @@
             } else {
               Swal.fire({ icon: 'error', title: 'Terjadi Kesalahan', text: res.message });
             }
-          } catch (err) {
-            Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: err.toString() });
-          }
+          }).submitSuara(activeUser.nisn, idPaslon);
         }
       });
     }
@@ -577,114 +649,116 @@
       muatDataAdmin();
     }
 
-    async function muatDataAdmin() {
-      try {
-        const data = await callBackend({ action: 'getAdminDashboardData' });
-        renderChart(data.paslon);
-        renderChartKelas(data.rekapKelas);
-        renderTabelDPT(data.dpt);
-      } catch (err) {
-        console.error("Gagal muat data admin:", err);
-      }
+    // Ambil data admin dari Google Apps Script
+    function muatDataAdmin() {
+      google.script.run.withSuccessHandler(data => {
+        // Pemetaan data Paslon
+        const labelsPaslon = data.paslon.map(p => p.nama);
+        const dataSuara = data.paslon.map(p => p.suara);
+        renderChartPaslon(labelsPaslon, dataSuara);
+
+        // Pemetaan data Partisipasi Kelas
+        const labelsKelas = data.rekapKelas.map(k => k.kelas);
+        const dataSudah = data.rekapKelas.map(k => k.sudah);
+        const dataBelum = data.rekapKelas.map(k => k.belum);
+        renderChartPartisipasi(labelsKelas, dataSudah, dataBelum);
+
+      }).getAdminDashboardData();
     }
 
-    function renderChart(paslonData) {
-      const labels = paslonData.map(p => p.nama);
-      const votes = paslonData.map(p => p.suara);
-      const ctx = document.getElementById('quickCountChart').getContext('2d');
+    // Fungsi Render Chart Paslon
+    function renderChartPaslon(labelPaslon, dataSuara) {
+      const ctx = document.getElementById('chartPaslon').getContext('2d');
+      
+      if (chartPaslonInstance) chartPaslonInstance.destroy();
 
-      if (chartInstance) chartInstance.destroy();
-
-      chartInstance = new Chart(ctx, {
+      chartPaslonInstance = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: labels,
+          labels: labelPaslon,
           datasets: [{
             label: 'Perolehan Suara',
-            data: votes,
-            backgroundColor: ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd'],
-            borderRadius: 8
+            data: dataSuara,
+            backgroundColor: '#2563eb',
+            borderRadius: 8,
+            barThickness: 45
           }]
         },
         options: {
           responsive: true,
-          plugins: { 
-            legend: { display: false }, 
-            title: { display: true, text: 'Hasil Quick Count Paslon', font: { size: 15, weight: 'bold' } } 
-          },
-          scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
-        }
-      });
-    }
-
-    function renderChartKelas(rekapKelasData) {
-      const labels = rekapKelasData.map(k => k.kelas);
-      const dataSudah = rekapKelasData.map(k => k.sudah);
-      const dataBelum = rekapKelasData.map(k => k.belum);
-      
-      const ctx = document.getElementById('partisipasiKelasChart').getContext('2d');
-
-      if (chartKelasInstance) chartKelasInstance.destroy();
-
-      chartKelasInstance = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: 'Sudah Memilih',
-              data: dataSudah,
-              backgroundColor: '#2563eb',
-              borderRadius: 6
-            },
-            {
-              label: 'Belum Memilih',
-              data: dataBelum,
-              backgroundColor: '#bfdbfe',
-              borderRadius: 6
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+              offset: 2,
+              color: '#1e293b',
+              font: { weight: 'bold', size: 14 },
+              formatter: (value) => value > 0 ? value + ' Suara' : '0'
             }
-          ]
-        },
-        options: {
-          responsive: true,
-          plugins: { 
-            legend: { display: true, position: 'bottom' }, 
-            title: { display: true, text: 'Tingkat Partisipasi Pemilih Per Kelas', font: { size: 15, weight: 'bold' } } 
           },
-          scales: { 
-            x: { stacked: true },
-            y: { stacked: true, beginAtZero: true, ticks: { stepSize: 1 } } 
+          scales: {
+            y: {
+              beginAtZero: true,
+              grace: '15%',
+              ticks: { precision: 0 }
+            }
           }
         }
       });
     }
 
-    function renderTabelDPT(dptData) {
-      const tbody = document.getElementById('bodyTabelDpt');
-      tbody.innerHTML = '';
-      dptData.forEach(row => {
-        const badge = row.status === 'Sudah' ? 
-          '<span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill"><i class="fa-solid fa-check me-1"></i>Sudah Memilih</span>' : 
-          '<span class="badge bg-warning-subtle text-warning-emphasis px-3 py-2 rounded-pill"><i class="fa-solid fa-clock me-1"></i>Belum Memilih</span>';
-        tbody.innerHTML += `
-          <tr>
-            <td class="font-monospace">${row.nisn}</td>
-            <td class="fw-semibold">${row.nama}</td>
-            <td>${row.kelas}</td>
-            <td>${badge}</td>
-          </tr>
-        `;
-      });
-    }
+    // Fungsi Render Chart Partisipasi Kelas
+    function renderChartPartisipasi(labelKelas, dataSudah, dataBelum) {
+      const ctx = document.getElementById('chartPartisipasi').getContext('2d');
+      
+      if (chartPartisipasiInstance) chartPartisipasiInstance.destroy();
 
-    function filterTabel() {
-      const input = document.getElementById('filterKelas').value.toLowerCase();
-      const trs = document.querySelectorAll('#bodyTabelDpt tr');
-      trs.forEach(tr => {
-        const text = tr.innerText.toLowerCase();
-        tr.style.display = text.includes(input) ? '' : 'none';
+      chartPartisipasiInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labelKelas,
+          datasets: [
+            {
+              label: 'Sudah Memilih',
+              data: dataSudah,
+              backgroundColor: '#2563eb',
+              borderRadius: 4
+            },
+            {
+              label: 'Belum Memilih',
+              data: dataBelum,
+              backgroundColor: '#93c5fd',
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' },
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+              offset: 1,
+              color: '#334155',
+              font: { weight: 'bold', size: 10 },
+              formatter: (value) => value > 0 ? value : ''
+            }
+          },
+          scales: {
+            x: { stacked: false },
+            y: {
+              beginAtZero: true,
+              grace: '15%',
+              ticks: { precision: 0 }
+            }
+          }
+        }
       });
     }
-  </script>
+  </script> 
 </body>
 </html>
