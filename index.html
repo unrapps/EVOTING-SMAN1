@@ -471,59 +471,64 @@
 
     // Mocking/Bridge google.script.run menggunakan fetch API
     const google = {
-      script: {
-        run: {
-          withSuccessHandler: function(callback) {
-            return {
-              loginSiswa: function(nisn) {
-                fetch(GAS_WEB_APP_URL, {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                  body: JSON.stringify({ action: 'loginSiswa', nisn: nisn })
-                })
-                .then(res => res.json())
-                .then(data => callback(data))
-                .catch(err => {
-                  Swal.close();
-                  Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: err.message });
-                });
-              },
-              getPaslonData: function() {
-                fetch(`${GAS_WEB_APP_URL}?action=getPaslonData`)
-                .then(res => res.json())
-                .then(data => callback(data))
-                .catch(err => {
-                  Swal.close();
-                  Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: err.message });
-                });
-              },
-              submitSuara: function(nisn, idPaslon) {
-                fetch(GAS_WEB_APP_URL, {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                  body: JSON.stringify({ action: 'submitSuara', nisn: nisn, idPaslon: idPaslon })
-                })
-                .then(res => res.json())
-                .then(data => callback(data))
-                .catch(err => {
-                  Swal.close();
-                  Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: err.message });
-                });
-              },
-              getAdminDashboardData: function() {
-                fetch(`${GAS_WEB_APP_URL}?action=getAdminDashboardData`)
-                .then(res => res.json())
-                .then(data => callback(data))
-                .catch(err => {
-                  Swal.close();
-                  Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: err.message });
-                });
-              }
-            };
+  script: {
+    run: {
+      withSuccessHandler: function(callback) {
+        return {
+          loginSiswa: function(nisn) {
+            fetch(GAS_WEB_APP_URL, {
+              method: 'POST',
+              redirect: 'follow',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({ action: 'loginSiswa', nisn: nisn })
+            })
+            .then(res => res.json())
+            .then(data => callback(data))
+            .catch(err => handleFetchError(err));
+          },
+          getPaslonData: function() {
+            fetch(`${GAS_WEB_APP_URL}?action=getPaslonData`, {
+              method: 'GET',
+              redirect: 'follow'
+            })
+            .then(res => res.json())
+            .then(data => callback(data))
+            .catch(err => handleFetchError(err));
+          },
+          submitSuara: function(nisn, idPaslon) {
+            fetch(GAS_WEB_APP_URL, {
+              method: 'POST',
+              redirect: 'follow',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({ action: 'submitSuara', nisn: nisn, idPaslon: idPaslon })
+            })
+            .then(res => res.json())
+            .then(data => callback(data))
+            .catch(err => handleFetchError(err));
+          },
+          getAdminDashboardData: function() {
+            fetch(`${GAS_WEB_APP_URL}?action=getAdminDashboardData`, {
+              method: 'GET',
+              redirect: 'follow'
+            })
+            .then(res => res.json())
+            .then(data => callback(data))
+            .catch(err => handleFetchError(err));
           }
-        }
+        };
       }
-    };
+    }
+  }
+};
+
+function handleFetchError(err) {
+  Swal.close();
+  Swal.fire({ 
+    icon: 'error', 
+    title: 'Koneksi Gagal', 
+    text: 'Gagal terhubung ke Google Apps Script. Pastikan akses deployment sudah set ke "Anyone".' 
+  });
+}
 
     // Register Plugin Datalabels Chart.js
     Chart.register(ChartDataLabels);
