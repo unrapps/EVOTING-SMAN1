@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-Voting OSIS-MPK SMANSA</title>
+  <title>E-Voting OSIS & MPK SMAN 1 Kota Sukabumi 2026</title>
 
   <!-- CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,7 +16,6 @@
 
   <style>
     :root {
-      /* Palette Biru Gradasi Modern (High Contrast) */
       --hero-bg: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
       --accent-blue: #2563eb;
       --card-blue-bg: rgba(255, 255, 255, 0.12);
@@ -33,26 +32,19 @@
       margin: 0;
     }
 
-    /* Logo Styling */
     .logo-landing {
       width: 105px;
       height: 105px;
       object-fit: contain;
       filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
-      transition: transform 0.4s ease;
-    }
-    .logo-landing:hover {
-      transform: scale(1.08) rotate(2deg);
     }
 
     .logo-header {
       width: 45px;
       height: 45px;
       object-fit: contain;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
     }
 
-    /* Landing Page Hero Styling */
     .hero-container {
       background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(4px);
@@ -60,74 +52,31 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
-      overflow: hidden;
       color: #ffffff;
     }
 
-    /* Lingkaran Dekoratif Soft */
-    .circle-deco {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      pointer-events: none;
-    }
-    .circle-1 { width: 400px; height: 400px; top: -120px; right: -80px; }
-    .circle-2 { width: 300px; height: 300px; bottom: 60px; right: 15%; }
-    .circle-3 { width: 220px; height: 220px; bottom: 160px; left: -60px; }
-
-    /* Feature Card Glassmorphism & Interaktif */
     .feature-card {
       background: var(--card-blue-bg);
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 24px;
       padding: 35px 25px;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       height: 100%;
-      cursor: pointer;
-    }
-    .feature-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      background: rgba(255, 255, 255, 0.22);
-      box-shadow: 0 20px 35px rgba(37, 99, 235, 0.3);
     }
 
-    /* Animation Icon Mengapung Interaktif */
     .icon-box {
       width: 65px;
       height: 65px;
       background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.35);
       border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px auto;
       font-size: 1.6rem;
-      animation: floatIcon 3s ease-in-out infinite;
-      transition: transform 0.3s ease, background 0.3s ease;
-      color: #ffffff;
-    }
-    
-    .feature-card:hover .icon-box {
-      animation: pulseShake 0.6s ease-in-out infinite alternate;
-      background: rgba(255, 255, 255, 0.35);
       color: #ffffff;
     }
 
-    @keyframes floatIcon {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    @keyframes pulseShake {
-      0% { transform: scale(1.1) rotate(-5deg); }
-      100% { transform: scale(1.1) rotate(5deg); }
-    }
-
-    /* Button Utama Landing */
     .btn-hero {
       background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
       color: #ffffff;
@@ -135,53 +84,50 @@
       padding: 15px 40px;
       border-radius: 50px;
       border: 1px solid rgba(255, 255, 255, 0.35);
-      box-shadow: 0 12px 25px rgba(29, 78, 216, 0.35);
-      transition: all 0.3s ease;
-    }
-    .btn-hero:hover {
-      color: #ffffff;
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 18px 35px rgba(29, 78, 216, 0.5);
-      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
     }
 
-    /* Standard Cards Layout untuk Form & Voting */
     .header-bg { 
       background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); 
       color: #ffffff; 
-      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
     }
+
     .card-custom {
       background: rgba(255, 255, 255, 0.95);
       border: 1px solid rgba(191, 219, 254, 0.8);
       border-radius: 20px;
       box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.1);
     }
+
     .card-paslon {
       border-radius: 20px;
       overflow: hidden;
-      border: 2px solid transparent;
-      transition: all 0.35s ease;
+      border: 3px solid transparent;
+      transition: all 0.3s ease;
       background: white;
+      cursor: pointer;
     }
-    .card-paslon:hover { 
-      transform: translateY(-8px) scale(1.02); 
-      border-color: #3b82f6;
-      box-shadow: 0 20px 35px -10px rgba(59, 130, 246, 0.35); 
+
+    /* Indikator Paslon Terpilih */
+    .card-paslon.selected {
+      border-color: #10b981 !important;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+      transform: translateY(-5px);
     }
+
     .img-wrapper {
       position: relative;
       overflow: hidden;
       background: #f0f9ff;
-      height: 320px;
+      height: 280px;
     }
+
     .paslon-img { 
       width: 100%;
       height: 100%;
       object-fit: contain; 
       padding: 12px;
-      transition: transform 0.5s ease;
     }
+
     .badge-no-urut {
       position: absolute;
       top: 15px;
@@ -196,9 +142,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       z-index: 2;
     }
+
     .btn-pilih {
       background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       border: none;
@@ -206,35 +152,12 @@
       font-weight: 700;
       border-radius: 12px;
       padding: 12px;
-      transition: all 0.3s ease;
-    }
-    .btn-pilih:hover {
-      opacity: 0.95;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
-      color: #ffffff;
-    }
-    .pulse-online {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-      animation: pulse 1.6s infinite;
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
 
-    /* Style & Animasi Teks Berjalan Modern */
     .ticker-wrapper {
       width: 100%;
       overflow: hidden;
       white-space: nowrap;
-      box-sizing: border-box;
       margin-top: 4px;
     }
 
@@ -245,7 +168,6 @@
       font-weight: 700;
       font-style: italic;
       font-size: 0.9rem;
-      letter-spacing: 0.5px;
       animation: marquee 12s linear infinite;
     }
 
@@ -254,15 +176,15 @@
       100% { transform: translate(-100%, 0); }
     }
 
-    /* Style Kontras Header Admin */
     .admin-header-box {
       background: rgba(15, 23, 42, 0.65);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    .text-shadow-sm {
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    .category-divider {
+      border-bottom: 2px dashed #cbd5e1;
+      margin: 30px 0;
     }
   </style>
 </head>
@@ -270,48 +192,31 @@
 
   <!-- ==================== 0. LANDING PAGE ==================== -->
   <div id="view-landing" class="hero-container">
-    <div class="circle-deco circle-1"></div>
-    <div class="circle-deco circle-2"></div>
-    <div class="circle-deco circle-3"></div>
-
     <div class="container my-auto py-4 text-center position-relative" style="z-index: 2;">
       <div class="mb-3">
-        <img src="https://lh3.googleusercontent.com/u/0/d/121ssTc5QuPlKKH1HGkLiL7zXgTgeCQ7Y" alt="Logo SMAN 1 Sukabumi" class="logo-landing">
+        <img src="https://lh3.googleusercontent.com/u/0/d/121ssTc5QuPlKKH1HGkLiL7zXgTgeCQ7Y" alt="Logo Sekolah" class="logo-landing">
       </div>
 
-      <h1 class="display-4 fw-bold mb-1 text-white">Voting Digital OSIS-MPK</h1>
-      <h3 class="fw-normal text-white-50 mb-3">SMAN 1 Sukabumi Tahun 2026</h3>
+      <h1 class="display-4 fw-bold mb-1 text-white">Voting Digital OSIS & MPK</h1>
+      <h3 class="fw-normal text-white-50 mb-3">SMA Negeri 1 Kota Sukabumi Tahun 2026</h3>
       
       <p class="lead text-white-50 mx-auto mb-4" style="max-width: 650px; font-size: 1.05rem;">
-        Platform voting OSIS-MPK yang transparan dan modern
+        Platform voting terpadu pemilihan Ketua OSIS dan MPK secara serentak
       </p>
 
       <div class="row g-4 justify-content-center mb-5">
         <div class="col-md-4">
           <div class="feature-card">
-            <div class="icon-box">
-              <i class="fa-shield-halved fa-regular"></i>
-            </div>
+            <div class="icon-box"><i class="fa-shield-halved fa-regular"></i></div>
             <h5 class="fw-bold mb-2 text-white">Keamanan Tinggi</h5>
-            <p class="small text-white-50 m-0">Sistem enkripsi dan autentikasi</p>
+            <p class="small text-white-50 m-0">Sistem autentikasi tunggal NISN terenkripsi</p>
           </div>
         </div>
         <div class="col-md-4">
           <div class="feature-card">
-            <div class="icon-box" style="animation-delay: 0.5s;">
-              <i class="fa-chart-simple fa-solid"></i>
-            </div>
-            <h5 class="fw-bold mb-2 text-white">Analytics Real-time</h5>
-            <p class="small text-white-50 m-0">Dashboard interaktif</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="feature-card">
-            <div class="icon-box" style="animation-delay: 1s;">
-              <i class="fa-mobile-screen-button fa-solid"></i>
-            </div>
-            <h5 class="fw-bold mb-2 text-white">Mobile-First</h5>
-            <p class="small text-white-50 m-0">Responsive design</p>
+            <div class="icon-box"><i class="fa-chart-simple fa-solid"></i></div>
+            <h5 class="fw-bold mb-2 text-white">Grafik Terpisah</h5>
+            <p class="small text-white-50 m-0">Rekapitulasi real-time OSIS & MPK independen</p>
           </div>
         </div>
       </div>
@@ -321,28 +226,25 @@
       </button>
     </div>
 
-    <div class="text-center py-3 text-white-50 small position-relative" style="z-index: 2;">
-      © Unr2026-Sistem Voting Digital
+    <div class="text-center py-3 text-white-50 small">
+      © Unr2026 E-Voting OSIS-MPK SMAN 1 Sukabumi.
     </div>
   </div>
 
 
-  <!-- Container untuk View Aplikasi (Login, Voting, Admin) -->
+  <!-- Container Aplikasi -->
   <div id="app-container" class="d-none">
 
-    <!-- Header Banner Aplikasi -->
-    <div class="header-bg p-3 p-md-4 mb-5">
+    <!-- Header Banner -->
+    <div class="header-bg p-3 p-md-4 mb-4">
       <div class="container d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center gap-3 overflow-hidden" style="max-width: 75%;">
           <img src="https://lh3.googleusercontent.com/u/0/d/121ssTc5QuPlKKH1HGkLiL7zXgTgeCQ7Y" alt="Logo Sekolah" class="logo-header flex-shrink-0">
           <div class="w-100 overflow-hidden">
-            <h4 class="fw-bold m-0">E-Vote OSKA</h4>
-            <p class="m-0 text-white-50 small">SMAN 1 Sukabumi</p>
-            
+            <h4 class="fw-bold m-0">Voting Digital OSIS & MPK</h4>
+            <p class="m-0 text-white-50 small">SMA Negeri 1 Kota Sukabumi Tahun 2026</p>
             <div class="ticker-wrapper">
-              <span class="ticker-text">
-                The Leading School Distinct as The Winner
-              </span>
+              <span class="ticker-text">The Leading School Distinct as The Winner</span>
             </div>
           </div>
         </div>
@@ -387,12 +289,13 @@
         </div>
       </div>
 
-      <!-- ==================== 2. VIEW SURAT SUARA (VOTING) ==================== -->
+      <!-- ==================== 2. VIEW SURAT SUARA (VOTING OSIS & MPK) ==================== -->
       <div id="view-voting" class="d-none">
-        <div class="card card-custom p-3 mb-4">
+        <!-- Card Identitas Pemilih -->
+        <div class="card card-custom p-3 mb-3">
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-3">
-              <div class="pulse-online"></div>
+              <span class="badge bg-success rounded-circle p-2"><i class="fa-solid fa-check"></i></span>
               <div>
                 <span class="text-muted small d-block">Identitas Pemilih:</span>
                 <h6 class="m-0 fw-bold"><span id="user-nama">-</span> <span class="badge bg-light text-dark ms-2" id="user-kelas">-</span></h6>
@@ -407,29 +310,55 @@
           </div>
         </div>
 
+        <!-- Alert Jika Sudah Memilih -->
         <div id="alert-sudah-memilih" class="alert alert-warning border-0 shadow-sm rounded-4 text-center p-4 mb-4 d-none">
           <i class="fa-solid fa-circle-check fa-3x text-warning mb-2"></i>
           <h4 class="fw-bold">Anda Sudah Menggunakan Hak Pilih!</h4>
-          <p class="mb-0 text-muted">Terima kasih atas partisipasi Anda dalam Pemilihan OSIS & MPK. Anda tidak dapat melakukan pemilihan ulang.</p>
+          <p class="mb-0 text-muted">Terima kasih atas partisipasi Anda dalam Pemilihan OSIS & MPK.</p>
         </div>
 
-       <div id="header-instruksi" class="card card-custom p-3 text-center mb-4">
-  <h3 class="fw-bold mb-1">Tentukan Pilihan Anda</h3>
-  <p class="text-muted m-0">Klik tombol pada kandidat yang ingin Anda dukung</p>
-</div>
-        
-        <div id="paslon-container" class="row g-4 justify-content-center"></div>
-      </div>
-        
-        <div id="paslon-container" class="row g-4 justify-content-center"></div>
+        <div id="wrapper-area-pilih">
+          <!-- Instruction Box -->
+          <div id="header-instruksi" class="card card-custom p-3 text-center mb-4">
+            <h3 class="fw-bold mb-1">Tentukan Pilihan Anda</h3>
+            <p class="text-muted m-0">Pilih masing-masing 1 Kandidat OSIS dan 1 Kandidat MPK, lalu klik **Kirim Suara**</p>
+          </div>
+          
+          <!-- KATEGORI 1: OSIS -->
+          <div class="mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <span class="badge bg-primary fs-6 px-3 py-2">KATEGORI 1</span>
+              <h4 class="fw-bold m-0 text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Pemilihan Ketua OSIS</h4>
+            </div>
+            <div id="paslon-osis-container" class="row g-4 justify-content-center"></div>
+          </div>
+
+          <div class="category-divider"></div>
+
+          <!-- KATEGORI 2: MPK -->
+          <div class="mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <span class="badge bg-warning text-dark fs-6 px-3 py-2">KATEGORI 2</span>
+              <h4 class="fw-bold m-0 text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Pemilihan Ketua MPK</h4>
+            </div>
+            <div id="paslon-mpk-container" class="row g-4 justify-content-center"></div>
+          </div>
+
+          <!-- Tombol Final Submit -->
+          <div class="text-center my-4">
+            <button id="btn-submit-final" onclick="konfirmasiKirimSemua()" class="btn btn-success btn-lg px-5 py-3 rounded-pill fw-bold shadow">
+              <i class="fa-solid fa-paper-plane me-2"></i>KIRIM SEMUA PILIHAN
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- ==================== 3. VIEW DASHBOARD ADMIN ==================== -->
       <div id="view-admin" class="d-none">
         <div class="d-flex justify-content-between align-items-center mb-4 p-3 rounded-4 admin-header-box">
           <div>
-            <h3 class="fw-bold m-0 text-white text-shadow-sm">Dashboard Quick Count</h3>
-            <p class="text-white-50 small m-0">Pantau perolehan suara & partisipasi kelas secara real-time</p>
+            <h3 class="fw-bold m-0 text-white">Dashboard Quick Count</h3>
+            <p class="text-white-50 small m-0">Hasil perolehan suara OSIS & MPK secara real-time</p>
           </div>
           <div class="d-flex gap-2">
             <button onclick="muatDataAdmin()" class="btn btn-primary rounded-3 shadow-sm font-semibold">
@@ -442,21 +371,31 @@
         </div>
 
         <div class="row g-4">
-          <!-- 1. GRAFIK QUICK COUNT PASLON -->
-          <div class="col-12">
+          <!-- GRAFIK OSIS -->
+          <div class="col-md-6">
             <div class="card-custom p-4 shadow-sm h-100">
-              <h5 class="fw-bold text-center mb-4 text-dark">Hasil Quick Count Paslon</h5>
-              <div style="position: relative; height: 350px;">
-                <canvas id="chartPaslon"></canvas>
+              <h5 class="fw-bold text-center mb-4 text-primary"><i class="fa-solid fa-chart-column me-2"></i>Perolehan Suara OSIS</h5>
+              <div style="position: relative; height: 320px;">
+                <canvas id="chartOsis"></canvas>
               </div>
             </div>
           </div>
 
-          <!-- 2. GRAFIK PARTISIPASI PEMILIH -->
+          <!-- GRAFIK MPK -->
+          <div class="col-md-6">
+            <div class="card-custom p-4 shadow-sm h-100">
+              <h5 class="fw-bold text-center mb-4 text-warning"><i class="fa-solid fa-chart-column me-2"></i>Perolehan Suara MPK</h5>
+              <div style="position: relative; height: 320px;">
+                <canvas id="chartMpk"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- GRAFIK PARTISIPASI -->
           <div class="col-12">
             <div class="card-custom p-4 shadow-sm h-100">
-              <h5 class="fw-bold text-center mb-4 text-dark">Tingkat Partisipasi Pemilih Per Kelas</h5>
-              <div style="position: relative; height: 400px;">
+              <h5 class="fw-bold text-center mb-4 text-dark"><i class="fa-solid fa-users me-2"></i>Tingkat Partisipasi Pemilih Per Kelas</h5>
+              <div style="position: relative; height: 380px;">
                 <canvas id="chartPartisipasi"></canvas>
               </div>
             </div>
@@ -467,77 +406,69 @@
     </div>
   </div>
 
-  <!-- SCRIPT JAVASCRIPT UTAMA -->
+  <!-- JAVASCRIPT LOGIC -->
   <script>
-    // URL Deployment Web App Google Apps Script
     const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxi7yte8kjW62ShjevVtA8AMiEsQgqoLtuQMsx1naoqmjQzhKzeo63sPOUnfCSig41v/exec";
 
-    // Mocking/Bridge google.script.run menggunakan fetch API
+    // Bridge Fetch API
     const google = {
-  script: {
-    run: {
-      withSuccessHandler: function(callback) {
-        return {
-          loginSiswa: function(nisn) {
-            fetch(GAS_WEB_APP_URL, {
-              method: 'POST',
-              redirect: 'follow',
-              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-              body: JSON.stringify({ action: 'loginSiswa', nisn: nisn })
-            })
-            .then(res => res.json())
-            .then(data => callback(data))
-            .catch(err => handleFetchError(err));
-          },
-          getPaslonData: function() {
-            fetch(`${GAS_WEB_APP_URL}?action=getPaslonData`, {
-              method: 'GET',
-              redirect: 'follow'
-            })
-            .then(res => res.json())
-            .then(data => callback(data))
-            .catch(err => handleFetchError(err));
-          },
-          submitSuara: function(nisn, idPaslon) {
-            fetch(GAS_WEB_APP_URL, {
-              method: 'POST',
-              redirect: 'follow',
-              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-              body: JSON.stringify({ action: 'submitSuara', nisn: nisn, idPaslon: idPaslon })
-            })
-            .then(res => res.json())
-            .then(data => callback(data))
-            .catch(err => handleFetchError(err));
-          },
-          getAdminDashboardData: function() {
-            fetch(`${GAS_WEB_APP_URL}?action=getAdminDashboardData`, {
-              method: 'GET',
-              redirect: 'follow'
-            })
-            .then(res => res.json())
-            .then(data => callback(data))
-            .catch(err => handleFetchError(err));
+      script: {
+        run: {
+          withSuccessHandler: function(callback) {
+            return {
+              loginSiswa: function(nisn) {
+                fetch(GAS_WEB_APP_URL, {
+                  method: 'POST',
+                  redirect: 'follow',
+                  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                  body: JSON.stringify({ action: 'loginSiswa', nisn: nisn })
+                })
+                .then(res => res.json())
+                .then(data => callback(data))
+                .catch(err => handleFetchError(err));
+              },
+              getPaslonData: function() {
+                fetch(`${GAS_WEB_APP_URL}?action=getPaslonData`, { method: 'GET', redirect: 'follow' })
+                .then(res => res.json())
+                .then(data => callback(data))
+                .catch(err => handleFetchError(err));
+              },
+              submitSuara: function(nisn, idOsis, idMpk) {
+                fetch(GAS_WEB_APP_URL, {
+                  method: 'POST',
+                  redirect: 'follow',
+                  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                  body: JSON.stringify({ action: 'submitSuara', nisn: nisn, idOsis: idOsis, idMpk: idMpk })
+                })
+                .then(res => res.json())
+                .then(data => callback(data))
+                .catch(err => handleFetchError(err));
+              },
+              getAdminDashboardData: function() {
+                fetch(`${GAS_WEB_APP_URL}?action=getAdminDashboardData`, { method: 'GET', redirect: 'follow' })
+                .then(res => res.json())
+                .then(data => callback(data))
+                .catch(err => handleFetchError(err));
+              }
+            };
           }
-        };
+        }
       }
+    };
+
+    function handleFetchError(err) {
+      Swal.close();
+      Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: 'Gagal terhubung ke server.' });
     }
-  }
-};
 
-function handleFetchError(err) {
-  Swal.close();
-  Swal.fire({ 
-    icon: 'error', 
-    title: 'Koneksi Gagal', 
-    text: 'Gagal terhubung ke Google Apps Script. Pastikan akses deployment sudah set ke "Anyone".' 
-  });
-}
-
-    // Register Plugin Datalabels Chart.js
     Chart.register(ChartDataLabels);
 
     let activeUser = null;
-    let chartPaslonInstance = null;
+    let selectedOsis = null;
+    let selectedMpk = null;
+
+    let chartOsisInstance = null;
+    let chartMpkInstance = null;
     let chartPartisipasiInstance = null;
 
     function bukaLandingPage() {
@@ -577,60 +508,88 @@ function handleFetchError(err) {
 
     function logoutSiswa() {
       activeUser = null;
+      selectedOsis = null;
+      selectedMpk = null;
       document.getElementById('inputNisn').value = '';
       bukaHalamanLogin();
     }
 
     function muatPaslon() {
       Swal.showLoading();
-      google.script.run.withSuccessHandler(dataPaslon => {
+      google.script.run.withSuccessHandler(data => {
         Swal.close();
-        const container = document.getElementById('paslon-container');
+        const areaPilih = document.getElementById('wrapper-area-pilih');
         const alertSudah = document.getElementById('alert-sudah-memilih');
-        const headerInstruksi = document.getElementById('header-instruksi');
-        
-        container.innerHTML = '';
-        const isSudahMemilih = (activeUser.status === 'Sudah');
 
-        if (isSudahMemilih) {
+        if (activeUser.status === 'Sudah') {
           alertSudah.classList.remove('d-none');
-          headerInstruksi.classList.add('d-none');
+          areaPilih.classList.add('d-none');
         } else {
           alertSudah.classList.add('d-none');
-          headerInstruksi.classList.remove('d-none');
+          areaPilih.classList.remove('d-none');
+          renderKategori('paslon-osis-container', data.osis, 'OSIS');
+          renderKategori('paslon-mpk-container', data.mpk, 'MPK');
         }
-
-        dataPaslon.forEach((p, index) => {
-          const buttonHtml = isSudahMemilih ? 
-            `<button class="btn btn-secondary w-100 fw-semibold" disabled><i class="fa-solid fa-lock me-2"></i>Sudah Digunakan</button>` :
-            `<button onclick="konfirmasiPilih(${p.id}, '${p.nama}')" class="btn btn-pilih w-100"><i class="fa-solid fa-check-circle me-2"></i>PILIH PASLON INI</button>`;
-
-          container.innerHTML += `
-            <div class="col-md-4">
-              <div class="card card-paslon shadow-sm h-100 ${isSudahMemilih ? 'opacity-75' : ''}">
-                <div class="img-wrapper">
-                  <div class="badge-no-urut">0${index + 1}</div>
-                  <img src="${p.foto}" class="paslon-img" alt="${p.nama}">
-                </div>
-                <div class="card-body text-center p-4 d-flex flex-column justify-content-between">
-                  <h5 class="fw-bold mb-3">${p.nama}</h5>
-                  ${buttonHtml}
-                </div>
-              </div>
-            </div>
-          `;
-        });
         showSection('view-voting');
       }).getPaslonData();
     }
 
-    function konfirmasiPilih(idPaslon, namaPaslon) {
+    function renderKategori(containerId, listPaslon, jenis) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+
+      listPaslon.forEach((p, index) => {
+        container.innerHTML += `
+          <div class="col-md-4">
+            <div id="card-${p.id}" onclick="pilihKandidat('${p.id}', '${jenis}')" class="card card-paslon shadow-sm h-100">
+              <div class="img-wrapper">
+                <div class="badge-no-urut">0${index + 1}</div>
+                <img src="${p.foto}" class="paslon-img" alt="${p.nama}">
+              </div>
+              <div class="card-body text-center p-3">
+                <h6 class="fw-bold mb-2">${p.nama}</h6>
+                <button type="button" class="btn btn-outline-primary btn-sm w-100 rounded-pill">Pilih Kandidat</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function pilihKandidat(id, jenis) {
+      if (jenis === 'OSIS') {
+        if (selectedOsis) {
+          const prevCard = document.getElementById(`card-${selectedOsis}`);
+          if (prevCard) prevCard.classList.remove('selected');
+        }
+        selectedOsis = id;
+      } else if (jenis === 'MPK') {
+        if (selectedMpk) {
+          const prevCard = document.getElementById(`card-${selectedMpk}`);
+          if (prevCard) prevCard.classList.remove('selected');
+        }
+        selectedMpk = id;
+      }
+      
+      const card = document.getElementById(`card-${id}`);
+      if (card) card.classList.add('selected');
+    }
+
+    function konfirmasiKirimSemua() {
+      if (!selectedOsis || !selectedMpk) {
+        return Swal.fire({
+          icon: 'warning',
+          title: 'Pilihan Belum Lengkap',
+          text: 'Harap memilih 1 Kandidat OSIS dan 1 Kandidat MPK sebelum mengirim!'
+        });
+      }
+
       Swal.fire({
-        title: 'Konfirmasi Pilihan',
-        html: `Apakah Anda yakin ingin memilih <strong>${namaPaslon}</strong>?<br><small class="text-danger">Pilihan tidak dapat diubah kembali!</small>`,
+        title: 'Konfirmasi Pilihan Final',
+        html: `Apakah Anda yakin ingin mengirimkan suara Anda untuk calon OSIS dan MPK pilihan Anda?<br><small class="text-danger">Pilihan tidak dapat diubah kembali!</small>`,
         icon: 'question',
         showCancelButton: true,
-        confirmButtonColor: '#2563eb',
+        confirmButtonColor: '#10b981',
         cancelButtonColor: '#64748b',
         confirmButtonText: 'Ya, Kirim Suara',
         cancelButtonText: 'Batal'
@@ -647,7 +606,7 @@ function handleFetchError(err) {
             } else {
               Swal.fire({ icon: 'error', title: 'Terjadi Kesalahan', text: res.message });
             }
-          }).submitSuara(activeUser.nisn, idPaslon);
+          }).submitSuara(activeUser.nisn, selectedOsis, selectedMpk);
         }
       });
     }
@@ -657,39 +616,32 @@ function handleFetchError(err) {
       muatDataAdmin();
     }
 
-    // Ambil data admin dari Google Apps Script
     function muatDataAdmin() {
       google.script.run.withSuccessHandler(data => {
-        // Pemetaan data Paslon
-        const labelsPaslon = data.paslon.map(p => p.nama);
-        const dataSuara = data.paslon.map(p => p.suara);
-        renderChartPaslon(labelsPaslon, dataSuara);
+        renderBarChart('chartOsis', chartOsisInstance, data.paslonOsis.map(p => p.nama), data.paslonOsis.map(p => p.suara), '#2563eb', (inst) => chartOsisInstance = inst);
+        renderBarChart('chartMpk', chartMpkInstance, data.paslonMpk.map(p => p.nama), data.paslonMpk.map(p => p.suara), '#f59e0b', (inst) => chartMpkInstance = inst);
 
-        // Pemetaan data Partisipasi Kelas
         const labelsKelas = data.rekapKelas.map(k => k.kelas);
         const dataSudah = data.rekapKelas.map(k => k.sudah);
         const dataBelum = data.rekapKelas.map(k => k.belum);
         renderChartPartisipasi(labelsKelas, dataSudah, dataBelum);
-
       }).getAdminDashboardData();
     }
 
-    // Fungsi Render Chart Paslon
-    function renderChartPaslon(labelPaslon, dataSuara) {
-      const ctx = document.getElementById('chartPaslon').getContext('2d');
-      
-      if (chartPaslonInstance) chartPaslonInstance.destroy();
+    function renderBarChart(canvasId, instance, labels, dataValues, barColor, setInstance) {
+      const ctx = document.getElementById(canvasId).getContext('2d');
+      if (instance) instance.destroy();
 
-      chartPaslonInstance = new Chart(ctx, {
+      const newInstance = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: labelPaslon,
+          labels: labels,
           datasets: [{
-            label: 'Perolehan Suara',
-            data: dataSuara,
-            backgroundColor: '#2563eb',
+            label: 'Suara',
+            data: dataValues,
+            backgroundColor: barColor,
             borderRadius: 8,
-            barThickness: 45
+            barThickness: 40
           }]
         },
         options: {
@@ -700,27 +652,19 @@ function handleFetchError(err) {
             datalabels: {
               anchor: 'end',
               align: 'end',
-              offset: 2,
               color: '#1e293b',
-              font: { weight: 'bold', size: 14 },
-              formatter: (value) => value > 0 ? value + ' Suara' : '0'
+              font: { weight: 'bold' },
+              formatter: (val) => val + ' Suara'
             }
           },
-          scales: {
-            y: {
-              beginAtZero: true,
-              grace: '15%',
-              ticks: { precision: 0 }
-            }
-          }
+          scales: { y: { beginAtZero: true, grace: '15%' } }
         }
       });
+      setInstance(newInstance);
     }
 
-    // Fungsi Render Chart Partisipasi Kelas
     function renderChartPartisipasi(labelKelas, dataSudah, dataBelum) {
       const ctx = document.getElementById('chartPartisipasi').getContext('2d');
-      
       if (chartPartisipasiInstance) chartPartisipasiInstance.destroy();
 
       chartPartisipasiInstance = new Chart(ctx, {
@@ -728,45 +672,18 @@ function handleFetchError(err) {
         data: {
           labels: labelKelas,
           datasets: [
-            {
-              label: 'Sudah Memilih',
-              data: dataSudah,
-              backgroundColor: '#2563eb',
-              borderRadius: 4
-            },
-            {
-              label: 'Belum Memilih',
-              data: dataBelum,
-              backgroundColor: '#93c5fd',
-              borderRadius: 4
-            }
+            { label: 'Sudah Memilih', data: dataSudah, backgroundColor: '#2563eb', borderRadius: 4 },
+            { label: 'Belum Memilih', data: dataBelum, backgroundColor: '#93c5fd', borderRadius: 4 }
           ]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom' },
-            datalabels: {
-              anchor: 'end',
-              align: 'end',
-              offset: 1,
-              color: '#334155',
-              font: { weight: 'bold', size: 10 },
-              formatter: (value) => value > 0 ? value : ''
-            }
-          },
-          scales: {
-            x: { stacked: false },
-            y: {
-              beginAtZero: true,
-              grace: '15%',
-              ticks: { precision: 0 }
-            }
-          }
+          plugins: { legend: { position: 'bottom' } },
+          scales: { y: { beginAtZero: true, grace: '15%' } }
         }
       });
     }
-  </script> 
+  </script>
 </body>
 </html>
