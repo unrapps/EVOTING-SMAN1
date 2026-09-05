@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-Voting OSIS & MPK SMAN 1 Kota Sukabumi 2026</title>
+  <title>E-Voting OSIS-MPK SMAN 1 Kota Sukabumi 2026</title>
 
   <!-- CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- JS CDN (SweetAlert2, Chart.js & Plugin Datalabels) -->
+  <!-- JS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
@@ -22,7 +22,7 @@
     }
 
     body { 
-      background-image: url('https://i.pinimg.com/1200x/8e/f8/c4/8ef8c40ce3b37e092e3cd2c0523137a2.jpg');
+      background-image: url('https://i.pinimg.com/1200x/0f/b9/94/0fb9942f3a11d2f0a5e8dd6b7c960ffe.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -37,12 +37,15 @@
       height: 105px;
       object-fit: contain;
       filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
+      transition: transform 0.4s ease;
     }
+    .logo-landing:hover { transform: scale(1.08) rotate(2deg); }
 
     .logo-header {
       width: 45px;
       height: 45px;
       object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
     }
 
     .hero-container {
@@ -52,8 +55,20 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: relative;
+      overflow: hidden;
       color: #ffffff;
     }
+
+    .circle-deco {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+    }
+    .circle-1 { width: 400px; height: 400px; top: -120px; right: -80px; }
+    .circle-2 { width: 300px; height: 300px; bottom: 60px; right: 15%; }
+    .circle-3 { width: 220px; height: 220px; bottom: 160px; left: -60px; }
 
     .feature-card {
       background: var(--card-blue-bg);
@@ -61,20 +76,35 @@
       border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 24px;
       padding: 35px 25px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       height: 100%;
+      cursor: pointer;
+    }
+    .feature-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      background: rgba(255, 255, 255, 0.22);
+      box-shadow: 0 20px 35px rgba(37, 99, 235, 0.3);
     }
 
     .icon-box {
       width: 65px;
       height: 65px;
       background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.35);
       border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px auto;
       font-size: 1.6rem;
+      animation: floatIcon 3s ease-in-out infinite;
+      transition: transform 0.3s ease, background 0.3s ease;
       color: #ffffff;
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     .btn-hero {
@@ -84,50 +114,58 @@
       padding: 15px 40px;
       border-radius: 50px;
       border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 12px 25px rgba(29, 78, 216, 0.35);
+      transition: all 0.3s ease;
+    }
+    .btn-hero:hover {
+      color: #ffffff;
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 18px 35px rgba(29, 78, 216, 0.5);
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
     }
 
     .header-bg { 
       background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); 
       color: #ffffff; 
+      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
     }
-
     .card-custom {
       background: rgba(255, 255, 255, 0.95);
       border: 1px solid rgba(191, 219, 254, 0.8);
       border-radius: 20px;
       box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.1);
     }
-
     .card-paslon {
       border-radius: 20px;
       overflow: hidden;
-      border: 3px solid transparent;
-      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      transition: all 0.35s ease;
       background: white;
-      cursor: pointer;
     }
-
-    /* Indikator Paslon Terpilih */
+    .card-paslon:hover { 
+      transform: translateY(-8px) scale(1.02); 
+      border-color: #3b82f6;
+      box-shadow: 0 20px 35px -10px rgba(59, 130, 246, 0.35); 
+    }
     .card-paslon.selected {
       border-color: #10b981 !important;
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4) !important;
+      background-color: #f0fdf4;
     }
 
     .img-wrapper {
       position: relative;
       overflow: hidden;
       background: #f0f9ff;
-      height: 280px;
+      height: 300px;
     }
-
     .paslon-img { 
       width: 100%;
       height: 100%;
       object-fit: contain; 
       padding: 12px;
+      transition: transform 0.5s ease;
     }
-
     .badge-no-urut {
       position: absolute;
       top: 15px;
@@ -142,9 +180,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       z-index: 2;
     }
-
     .btn-pilih {
       background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       border: none;
@@ -152,6 +190,27 @@
       font-weight: 700;
       border-radius: 12px;
       padding: 12px;
+      transition: all 0.3s ease;
+    }
+    .btn-pilih:hover {
+      opacity: 0.95;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+      color: #ffffff;
+    }
+    .pulse-online {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
 
     .ticker-wrapper {
@@ -160,7 +219,6 @@
       white-space: nowrap;
       margin-top: 4px;
     }
-
     .ticker-text {
       display: inline-block;
       padding-left: 100%;
@@ -170,7 +228,6 @@
       font-size: 0.9rem;
       animation: marquee 12s linear infinite;
     }
-
     @keyframes marquee {
       0%   { transform: translate(0, 0); }
       100% { transform: translate(-100%, 0); }
@@ -181,27 +238,35 @@
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.15);
     }
+    .text-shadow-sm { text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
 
-    .category-divider {
-      border-bottom: 2px dashed #cbd5e1;
-      margin: 30px 0;
+    .badge-category {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      color: white;
+      font-size: 0.9rem;
+      padding: 6px 16px;
+      border-radius: 20px;
     }
   </style>
 </head>
 <body>
 
-  <!-- ==================== 0. LANDING PAGE ==================== -->
+  <!-- LANDING PAGE -->
   <div id="view-landing" class="hero-container">
+    <div class="circle-deco circle-1"></div>
+    <div class="circle-deco circle-2"></div>
+    <div class="circle-deco circle-3"></div>
+
     <div class="container my-auto py-4 text-center position-relative" style="z-index: 2;">
       <div class="mb-3">
-        <img src="https://lh3.googleusercontent.com/u/0/d/121ssTc5QuPlKKH1HGkLiL7zXgTgeCQ7Y" alt="Logo Sekolah" class="logo-landing">
+        <img src="https://lh3.googleusercontent.com/u/0/d/121ssTc5QuPlKKH1HGkLiL7zXgTgeCQ7Y" alt="Logo SMAN 1 Sukabumi" class="logo-landing">
       </div>
 
-      <h1 class="display-4 fw-bold mb-1 text-white">Voting Digital OSIS & MPK</h1>
+      <h1 class="display-4 fw-bold mb-1 text-white">Voting Digital OSIS-MPK</h1>
       <h3 class="fw-normal text-white-50 mb-3">SMA Negeri 1 Kota Sukabumi Tahun 2026</h3>
       
       <p class="lead text-white-50 mx-auto mb-4" style="max-width: 650px; font-size: 1.05rem;">
-        Platform voting terpadu pemilihan Ketua OSIS dan MPK secara serentak
+        Platform voting revolusioner untuk demokrasi yang transparan dan modern
       </p>
 
       <div class="row g-4 justify-content-center mb-5">
@@ -209,14 +274,21 @@
           <div class="feature-card">
             <div class="icon-box"><i class="fa-shield-halved fa-regular"></i></div>
             <h5 class="fw-bold mb-2 text-white">Keamanan Tinggi</h5>
-            <p class="small text-white-50 m-0">Sistem autentikasi tunggal NISN terenkripsi</p>
+            <p class="small text-white-50 m-0">Sistem enkripsi dan autentikasi untuk perlindungan maksimal</p>
           </div>
         </div>
         <div class="col-md-4">
           <div class="feature-card">
-            <div class="icon-box"><i class="fa-chart-simple fa-solid"></i></div>
-            <h5 class="fw-bold mb-2 text-white">Grafik Terpisah</h5>
-            <p class="small text-white-50 m-0">Rekapitulasi real-time OSIS & MPK independen</p>
+            <div class="icon-box" style="animation-delay: 0.5s;"><i class="fa-chart-simple fa-solid"></i></div>
+            <h5 class="fw-bold mb-2 text-white">Analytics Real-time</h5>
+            <p class="small text-white-50 m-0">Dashboard interaktif dengan visualisasi data terpisah OSIS & MPK</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="icon-box" style="animation-delay: 1s;"><i class="fa-mobile-screen-button fa-solid"></i></div>
+            <h5 class="fw-bold mb-2 text-white">Mobile-First</h5>
+            <p class="small text-white-50 m-0">Responsive design di semua perangkat dengan performa optimal</p>
           </div>
         </div>
       </div>
@@ -226,22 +298,20 @@
       </button>
     </div>
 
-    <div class="text-center py-3 text-white-50 small">
-      © Unr2026 E-Voting OSIS-MPK SMAN 1 Sukabumi.
+    <div class="text-center py-3 text-white-50 small position-relative" style="z-index: 2;">
+      © Unr2026 Sistem Voting Digital by Kesiswaan SMAN 1 Sukabumi.
     </div>
   </div>
 
-
-  <!-- Container Aplikasi -->
+  <!-- CONTAINER APLIKASI -->
   <div id="app-container" class="d-none">
 
-    <!-- Header Banner -->
-    <div class="header-bg p-3 p-md-4 mb-4">
+    <div class="header-bg p-3 p-md-4 mb-5">
       <div class="container d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center gap-3 overflow-hidden" style="max-width: 75%;">
           <img src="https://lh3.googleusercontent.com/u/0/d/121ssTc5QuPlKKH1HGkLiL7zXgTgeCQ7Y" alt="Logo Sekolah" class="logo-header flex-shrink-0">
           <div class="w-100 overflow-hidden">
-            <h4 class="fw-bold m-0">Voting Digital OSIS & MPK</h4>
+            <h4 class="fw-bold m-0">Voting Digital OSIS-MPK</h4>
             <p class="m-0 text-white-50 small">SMA Negeri 1 Kota Sukabumi Tahun 2026</p>
             <div class="ticker-wrapper">
               <span class="ticker-text">The Leading School Distinct as The Winner</span>
@@ -256,7 +326,7 @@
 
     <div class="container pb-5">
 
-      <!-- ==================== 1. VIEW LOGIN SISWA ==================== -->
+      <!-- VIEW LOGIN -->
       <div id="view-login" class="row justify-content-center">
         <div class="col-md-5">
           <div class="card card-custom p-4 p-md-5">
@@ -289,13 +359,12 @@
         </div>
       </div>
 
-      <!-- ==================== 2. VIEW SURAT SUARA (VOTING OSIS & MPK) ==================== -->
+      <!-- VIEW SURAT SUARA -->
       <div id="view-voting" class="d-none">
-        <!-- Card Identitas Pemilih -->
-        <div class="card card-custom p-3 mb-3">
+        <div class="card card-custom p-3 mb-4">
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-3">
-              <span class="badge bg-success rounded-circle p-2"><i class="fa-solid fa-check"></i></span>
+              <div class="pulse-online"></div>
               <div>
                 <span class="text-muted small d-block">Identitas Pemilih:</span>
                 <h6 class="m-0 fw-bold"><span id="user-nama">-</span> <span class="badge bg-light text-dark ms-2" id="user-kelas">-</span></h6>
@@ -310,55 +379,48 @@
           </div>
         </div>
 
-        <!-- Alert Jika Sudah Memilih -->
         <div id="alert-sudah-memilih" class="alert alert-warning border-0 shadow-sm rounded-4 text-center p-4 mb-4 d-none">
           <i class="fa-solid fa-circle-check fa-3x text-warning mb-2"></i>
           <h4 class="fw-bold">Anda Sudah Menggunakan Hak Pilih!</h4>
-          <p class="mb-0 text-muted">Terima kasih atas partisipasi Anda dalam Pemilihan OSIS & MPK.</p>
+          <p class="mb-0 text-muted">Terima kasih atas partisipasi Anda dalam Pemilihan OSIS & MPK. Anda tidak dapat melakukan pemilihan ulang.</p>
         </div>
 
-        <div id="wrapper-area-pilih">
-          <!-- Instruction Box -->
+        <div id="voting-content">
           <div id="header-instruksi" class="card card-custom p-3 text-center mb-4">
             <h3 class="fw-bold mb-1">Tentukan Pilihan Anda</h3>
-            <p class="text-muted m-0">Pilih masing-masing 1 Kandidat OSIS dan 1 Kandidat MPK, lalu klik **Kirim Suara**</p>
+            <p class="text-muted m-0">Pilih 1 Paslon OSIS dan 1 Paslon MPK, lalu klik tombol "Kirim Semua Suara"</p>
           </div>
-          
-          <!-- KATEGORI 1: OSIS -->
+
           <div class="mb-5">
-            <div class="d-flex align-items-center gap-2 mb-3">
-              <span class="badge bg-primary fs-6 px-3 py-2">KATEGORI 1</span>
-              <h4 class="fw-bold m-0 text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Pemilihan Ketua OSIS</h4>
+            <div class="d-flex align-items-center mb-3">
+              <span class="badge-category me-2"><i class="fa-solid fa-users me-1"></i>KATEGORI 1</span>
+              <h4 class="fw-bold text-white text-shadow-sm m-0">Calon Ketua & Wakil Ketua OSIS</h4>
             </div>
             <div id="paslon-osis-container" class="row g-4 justify-content-center"></div>
           </div>
 
-          <div class="category-divider"></div>
-
-          <!-- KATEGORI 2: MPK -->
-          <div class="mb-5">
-            <div class="d-flex align-items-center gap-2 mb-3">
-              <span class="badge bg-warning text-dark fs-6 px-3 py-2">KATEGORI 2</span>
-              <h4 class="fw-bold m-0 text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Pemilihan Ketua MPK</h4>
+          <div class="mb-4">
+            <div class="d-flex align-items-center mb-3">
+              <span class="badge-category me-2" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);"><i class="fa-solid fa-user-shield me-1"></i>KATEGORI 2</span>
+              <h4 class="fw-bold text-white text-shadow-sm m-0">Calon Ketua & Wakil Ketua MPK</h4>
             </div>
             <div id="paslon-mpk-container" class="row g-4 justify-content-center"></div>
           </div>
 
-          <!-- Tombol Final Submit -->
-          <div class="text-center my-4">
-            <button id="btn-submit-final" onclick="konfirmasiKirimSemua()" class="btn btn-success btn-lg px-5 py-3 rounded-pill fw-bold shadow">
-              <i class="fa-solid fa-paper-plane me-2"></i>KIRIM SEMUA PILIHAN
+          <div class="text-center mt-5 mb-4" id="submit-wrapper">
+            <button onclick="submitSemuaSuara()" class="btn btn-hero btn-lg px-5 shadow">
+              <i class="fa-solid fa-paper-plane me-2"></i>KIRIM SEMUA SUARA (OSIS & MPK)
             </button>
           </div>
         </div>
       </div>
 
-      <!-- ==================== 3. VIEW DASHBOARD ADMIN ==================== -->
+      <!-- VIEW DASHBOARD ADMIN -->
       <div id="view-admin" class="d-none">
         <div class="d-flex justify-content-between align-items-center mb-4 p-3 rounded-4 admin-header-box">
           <div>
-            <h3 class="fw-bold m-0 text-white">Dashboard Quick Count</h3>
-            <p class="text-white-50 small m-0">Hasil perolehan suara OSIS & MPK secara real-time</p>
+            <h3 class="fw-bold m-0 text-white text-shadow-sm">Dashboard Quick Count</h3>
+            <p class="text-white-50 small m-0">Pantau perolehan suara OSIS, MPK & partisipasi kelas secara real-time</p>
           </div>
           <div class="d-flex gap-2">
             <button onclick="muatDataAdmin()" class="btn btn-primary rounded-3 shadow-sm font-semibold">
@@ -371,30 +433,27 @@
         </div>
 
         <div class="row g-4">
-          <!-- GRAFIK OSIS -->
           <div class="col-md-6">
             <div class="card-custom p-4 shadow-sm h-100">
-              <h5 class="fw-bold text-center mb-4 text-primary"><i class="fa-solid fa-chart-column me-2"></i>Perolehan Suara OSIS</h5>
+              <h5 class="fw-bold text-center mb-4 text-dark"><i class="fa-solid fa-chart-column me-2 text-primary"></i>Quick Count OSIS</h5>
               <div style="position: relative; height: 320px;">
                 <canvas id="chartOsis"></canvas>
               </div>
             </div>
           </div>
 
-          <!-- GRAFIK MPK -->
           <div class="col-md-6">
             <div class="card-custom p-4 shadow-sm h-100">
-              <h5 class="fw-bold text-center mb-4 text-warning"><i class="fa-solid fa-chart-column me-2"></i>Perolehan Suara MPK</h5>
+              <h5 class="fw-bold text-center mb-4 text-dark"><i class="fa-solid fa-chart-column me-2 text-success"></i>Quick Count MPK</h5>
               <div style="position: relative; height: 320px;">
                 <canvas id="chartMpk"></canvas>
               </div>
             </div>
           </div>
 
-          <!-- GRAFIK PARTISIPASI -->
           <div class="col-12">
             <div class="card-custom p-4 shadow-sm h-100">
-              <h5 class="fw-bold text-center mb-4 text-dark"><i class="fa-solid fa-users me-2"></i>Tingkat Partisipasi Pemilih Per Kelas</h5>
+              <h5 class="fw-bold text-center mb-4 text-dark"><i class="fa-solid fa-users-line me-2 text-info"></i>Tingkat Partisipasi Pemilih Per Kelas</h5>
               <div style="position: relative; height: 380px;">
                 <canvas id="chartPartisipasi"></canvas>
               </div>
@@ -406,60 +465,10 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- JAVASCRIPT UTAMA (Disesuaikan untuk GitHub Pages) -->
   <script>
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxi7yte8kjW62ShjevVtA8AMiEsQgqoLtuQMsx1naoqmjQzhKzeo63sPOUnfCSig41v/exec";
-
-    // Bridge Fetch API
-    const google = {
-      script: {
-        run: {
-          withSuccessHandler: function(callback) {
-            return {
-              loginSiswa: function(nisn) {
-                fetch(GAS_WEB_APP_URL, {
-                  method: 'POST',
-                  redirect: 'follow',
-                  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                  body: JSON.stringify({ action: 'loginSiswa', nisn: nisn })
-                })
-                .then(res => res.json())
-                .then(data => callback(data))
-                .catch(err => handleFetchError(err));
-              },
-              getPaslonData: function() {
-                fetch(`${GAS_WEB_APP_URL}?action=getPaslonData`, { method: 'GET', redirect: 'follow' })
-                .then(res => res.json())
-                .then(data => callback(data))
-                .catch(err => handleFetchError(err));
-              },
-              submitSuara: function(nisn, idOsis, idMpk) {
-                fetch(GAS_WEB_APP_URL, {
-                  method: 'POST',
-                  redirect: 'follow',
-                  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                  body: JSON.stringify({ action: 'submitSuara', nisn: nisn, idOsis: idOsis, idMpk: idMpk })
-                })
-                .then(res => res.json())
-                .then(data => callback(data))
-                .catch(err => handleFetchError(err));
-              },
-              getAdminDashboardData: function() {
-                fetch(`${GAS_WEB_APP_URL}?action=getAdminDashboardData`, { method: 'GET', redirect: 'follow' })
-                .then(res => res.json())
-                .then(data => callback(data))
-                .catch(err => handleFetchError(err));
-              }
-            };
-          }
-        }
-      }
-    };
-
-    function handleFetchError(err) {
-      Swal.close();
-      Swal.fire({ icon: 'error', title: 'Koneksi Gagal', text: 'Gagal terhubung ke server.' });
-    }
+    // PASTE URL WEB APP APPS SCRIPT ANDA DI SINI
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx...GANTI_DENGAN_URL_WEB_APP_ANDA.../exec';
 
     Chart.register(ChartDataLabels);
 
@@ -470,6 +479,20 @@
     let chartOsisInstance = null;
     let chartMpkInstance = null;
     let chartPartisipasiInstance = null;
+
+    // Helper untuk Fetch API ke Apps Script
+    async function apiCall(action, payload = {}) {
+      try {
+        const response = await fetch(`${SCRIPT_URL}?action=${action}`, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        return await response.json();
+      } catch (err) {
+        console.error("API Error:", err);
+        return { success: false, message: 'Gagal terhubung ke server backend!' };
+      }
+    }
 
     function bukaLandingPage() {
       document.getElementById('view-landing').classList.remove('d-none');
@@ -487,23 +510,23 @@
       document.getElementById(id).classList.remove('d-none');
     }
 
-    function prosesLogin() {
+    async function prosesLogin() {
       const nisn = document.getElementById('inputNisn').value.trim();
       if (!nisn) return Swal.fire({ icon: 'warning', title: 'Perhatian', text: 'Silakan masukkan NISN Anda!' });
 
       Swal.showLoading();
-      google.script.run.withSuccessHandler(res => {
-        Swal.close();
-        if (res.success) {
-          activeUser = res.siswa;
-          document.getElementById('user-nama').innerText = activeUser.nama;
-          document.getElementById('user-kelas').innerText = activeUser.kelas;
-          document.getElementById('user-nisn').innerText = activeUser.nisn;
-          muatPaslon();
-        } else {
-          Swal.fire({ icon: 'error', title: 'Gagal Login', text: res.message });
-        }
-      }).loginSiswa(nisn);
+      const res = await apiCall('loginSiswa', { nisn: nisn });
+      Swal.close();
+
+      if (res.success) {
+        activeUser = res.siswa;
+        document.getElementById('user-nama').innerText = activeUser.nama;
+        document.getElementById('user-kelas').innerText = activeUser.kelas;
+        document.getElementById('user-nisn').innerText = activeUser.nisn;
+        muatPaslon();
+      } else {
+        Swal.fire({ icon: 'error', title: 'Gagal Login', text: res.message });
+      }
     }
 
     function logoutSiswa() {
@@ -514,41 +537,48 @@
       bukaHalamanLogin();
     }
 
-    function muatPaslon() {
+    async function muatPaslon() {
       Swal.showLoading();
-      google.script.run.withSuccessHandler(data => {
-        Swal.close();
-        const areaPilih = document.getElementById('wrapper-area-pilih');
-        const alertSudah = document.getElementById('alert-sudah-memilih');
+      const data = await apiCall('getPaslonData');
+      Swal.close();
+      
+      const isSudahMemilih = (activeUser.status === 'Sudah');
+      const alertSudah = document.getElementById('alert-sudah-memilih');
+      const votingContent = document.getElementById('voting-content');
 
-        if (activeUser.status === 'Sudah') {
-          alertSudah.classList.remove('d-none');
-          areaPilih.classList.add('d-none');
-        } else {
-          alertSudah.classList.add('d-none');
-          areaPilih.classList.remove('d-none');
-          renderKategori('paslon-osis-container', data.osis, 'OSIS');
-          renderKategori('paslon-mpk-container', data.mpk, 'MPK');
-        }
-        showSection('view-voting');
-      }).getPaslonData();
+      if (isSudahMemilih) {
+        alertSudah.classList.remove('d-none');
+        votingContent.classList.add('d-none');
+      } else {
+        alertSudah.classList.add('d-none');
+        votingContent.classList.remove('d-none');
+      }
+
+      renderKategoriPaslon('paslon-osis-container', data.osis, 'OSIS');
+      renderKategoriPaslon('paslon-mpk-container', data.mpk, 'MPK');
+
+      showSection('view-voting');
     }
 
-    function renderKategori(containerId, listPaslon, jenis) {
+    function renderKategoriPaslon(containerId, listPaslon, jenis) {
       const container = document.getElementById(containerId);
       container.innerHTML = '';
+
+      if (!listPaslon) return;
 
       listPaslon.forEach((p, index) => {
         container.innerHTML += `
           <div class="col-md-4">
-            <div id="card-${p.id}" onclick="pilihKandidat('${p.id}', '${jenis}')" class="card card-paslon shadow-sm h-100">
+            <div class="card card-paslon shadow-sm h-100" id="card-${p.id}">
               <div class="img-wrapper">
                 <div class="badge-no-urut">0${index + 1}</div>
                 <img src="${p.foto}" class="paslon-img" alt="${p.nama}">
               </div>
-              <div class="card-body text-center p-3">
-                <h6 class="fw-bold mb-2">${p.nama}</h6>
-                <button type="button" class="btn btn-outline-primary btn-sm w-100 rounded-pill">Pilih Kandidat</button>
+              <div class="card-body text-center p-4 d-flex flex-column justify-content-between">
+                <h5 class="fw-bold mb-3">${p.nama}</h5>
+                <button onclick="pilihKandidat('${jenis}', '${p.id}', '${p.nama}')" class="btn btn-pilih w-100" id="btn-${p.id}">
+                  <i class="fa-solid fa-check-circle me-2"></i>PILIH ${jenis} INI
+                </button>
               </div>
             </div>
           </div>
@@ -556,57 +586,80 @@
       });
     }
 
-    function pilihKandidat(id, jenis) {
+    function pilihKandidat(jenis, id, nama) {
       if (jenis === 'OSIS') {
-        if (selectedOsis) {
-          const prevCard = document.getElementById(`card-${selectedOsis}`);
-          if (prevCard) prevCard.classList.remove('selected');
-        }
-        selectedOsis = id;
+        selectedOsis = { id, nama };
+        document.querySelectorAll('#paslon-osis-container .card-paslon').forEach(c => c.classList.remove('selected'));
+        document.querySelectorAll('#paslon-osis-container .btn-pilih').forEach(b => {
+          b.classList.remove('btn-success');
+          b.classList.add('btn-pilih');
+          b.innerHTML = '<i class="fa-solid fa-check-circle me-2"></i>PILIH OSIS INI';
+        });
+
+        document.getElementById(`card-${id}`).classList.add('selected');
+        const btn = document.getElementById(`btn-${id}`);
+        btn.classList.remove('btn-pilih');
+        btn.classList.add('btn-success');
+        btn.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>TERPILIH';
+
       } else if (jenis === 'MPK') {
-        if (selectedMpk) {
-          const prevCard = document.getElementById(`card-${selectedMpk}`);
-          if (prevCard) prevCard.classList.remove('selected');
-        }
-        selectedMpk = id;
+        selectedMpk = { id, nama };
+        document.querySelectorAll('#paslon-mpk-container .card-paslon').forEach(c => c.classList.remove('selected'));
+        document.querySelectorAll('#paslon-mpk-container .btn-pilih').forEach(b => {
+          b.classList.remove('btn-success');
+          b.classList.add('btn-pilih');
+          b.innerHTML = '<i class="fa-solid fa-check-circle me-2"></i>PILIH MPK INI';
+        });
+
+        document.getElementById(`card-${id}`).classList.add('selected');
+        const btn = document.getElementById(`btn-${id}`);
+        btn.classList.remove('btn-pilih');
+        btn.classList.add('btn-success');
+        btn.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>TERPILIH';
       }
-      
-      const card = document.getElementById(`card-${id}`);
-      if (card) card.classList.add('selected');
     }
 
-    function konfirmasiKirimSemua() {
-      if (!selectedOsis || !selectedMpk) {
-        return Swal.fire({
-          icon: 'warning',
-          title: 'Pilihan Belum Lengkap',
-          text: 'Harap memilih 1 Kandidat OSIS dan 1 Kandidat MPK sebelum mengirim!'
-        });
+    function submitSemuaSuara() {
+      if (!selectedOsis) {
+        return Swal.fire({ icon: 'warning', title: 'Belum Lengkap', text: 'Silakan pilih kandidat Ketua OSIS terlebih dahulu!' });
+      }
+      if (!selectedMpk) {
+        return Swal.fire({ icon: 'warning', title: 'Belum Lengkap', text: 'Silakan pilih kandidat Ketua MPK terlebih dahulu!' });
       }
 
       Swal.fire({
-        title: 'Konfirmasi Pilihan Final',
-        html: `Apakah Anda yakin ingin mengirimkan suara Anda untuk calon OSIS dan MPK pilihan Anda?<br><small class="text-danger">Pilihan tidak dapat diubah kembali!</small>`,
+        title: 'Konfirmasi Pilihan Anda',
+        html: `
+          <div class="text-start fs-6 p-3 bg-light rounded-3">
+            <p class="mb-2"><strong>OSIS:</strong> ${selectedOsis.nama}</p>
+            <p class="mb-0"><strong>MPK:</strong> ${selectedMpk.nama}</p>
+          </div>
+          <small class="text-danger d-block mt-3">Pilihan Anda bersifat final dan tidak dapat diubah!</small>
+        `,
         icon: 'question',
         showCancelButton: true,
-        confirmButtonColor: '#10b981',
+        confirmButtonColor: '#2563eb',
         cancelButtonColor: '#64748b',
         confirmButtonText: 'Ya, Kirim Suara',
         cancelButtonText: 'Batal'
-      }).then(result => {
+      }).then(async result => {
         if (result.isConfirmed) {
           Swal.showLoading();
-          google.script.run.withSuccessHandler(res => {
-            Swal.close();
-            if (res.success) {
-              Swal.fire({ icon: 'success', title: 'Berhasil!', text: res.message }).then(() => {
-                activeUser.status = 'Sudah';
-                muatPaslon();
-              });
-            } else {
-              Swal.fire({ icon: 'error', title: 'Terjadi Kesalahan', text: res.message });
-            }
-          }).submitSuara(activeUser.nisn, selectedOsis, selectedMpk);
+          const res = await apiCall('submitSuara', {
+            nisn: activeUser.nisn,
+            idPaslonOsis: selectedOsis.id,
+            idPaslonMpk: selectedMpk.id
+          });
+          Swal.close();
+
+          if (res.success) {
+            Swal.fire({ icon: 'success', title: 'Berhasil!', text: res.message }).then(() => {
+              activeUser.status = 'Sudah';
+              muatPaslon();
+            });
+          } else {
+            Swal.fire({ icon: 'error', title: 'Gagal', text: res.message });
+          }
         }
       });
     }
@@ -616,30 +669,33 @@
       muatDataAdmin();
     }
 
-    function muatDataAdmin() {
-      google.script.run.withSuccessHandler(data => {
-        renderBarChart('chartOsis', chartOsisInstance, data.paslonOsis.map(p => p.nama), data.paslonOsis.map(p => p.suara), '#2563eb', (inst) => chartOsisInstance = inst);
-        renderBarChart('chartMpk', chartMpkInstance, data.paslonMpk.map(p => p.nama), data.paslonMpk.map(p => p.suara), '#f59e0b', (inst) => chartMpkInstance = inst);
+    async function muatDataAdmin() {
+      const data = await apiCall('getAdminDashboardData');
+      if (!data) return;
 
-        const labelsKelas = data.rekapKelas.map(k => k.kelas);
-        const dataSudah = data.rekapKelas.map(k => k.sudah);
-        const dataBelum = data.rekapKelas.map(k => k.belum);
-        renderChartPartisipasi(labelsKelas, dataSudah, dataBelum);
-      }).getAdminDashboardData();
+      renderBarChart('chartOsis', chartOsisInstance, data.paslonOsis, '#2563eb', inst => chartOsisInstance = inst);
+      renderBarChart('chartMpk', chartMpkInstance, data.paslonMpk, '#10b981', inst => chartMpkInstance = inst);
+
+      const labelsKelas = data.rekapKelas.map(k => k.kelas);
+      const dataSudah = data.rekapKelas.map(k => k.sudah);
+      const dataBelum = data.rekapKelas.map(k => k.belum);
+      renderChartPartisipasi(labelsKelas, dataSudah, dataBelum);
     }
 
-    function renderBarChart(canvasId, instance, labels, dataValues, barColor, setInstance) {
+    function renderBarChart(canvasId, instanceVar, paslonData, color, setInstance) {
       const ctx = document.getElementById(canvasId).getContext('2d');
-      if (instance) instance.destroy();
+      if (instanceVar) instanceVar.destroy();
 
-      const newInstance = new Chart(ctx, {
+      if (!paslonData) return;
+
+      const newChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: labels,
+          labels: paslonData.map(p => p.nama),
           datasets: [{
             label: 'Suara',
-            data: dataValues,
-            backgroundColor: barColor,
+            data: paslonData.map(p => p.suara),
+            backgroundColor: color,
             borderRadius: 8,
             barThickness: 40
           }]
@@ -652,15 +708,18 @@
             datalabels: {
               anchor: 'end',
               align: 'end',
+              offset: 2,
               color: '#1e293b',
-              font: { weight: 'bold' },
-              formatter: (val) => val + ' Suara'
+              font: { weight: 'bold', size: 13 },
+              formatter: (val) => val > 0 ? val + ' Suara' : '0'
             }
           },
-          scales: { y: { beginAtZero: true, grace: '15%' } }
+          scales: {
+            y: { beginAtZero: true, grace: '15%', ticks: { precision: 0 } }
+          }
         }
       });
-      setInstance(newInstance);
+      setInstance(newChart);
     }
 
     function renderChartPartisipasi(labelKelas, dataSudah, dataBelum) {
@@ -679,8 +738,21 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: { legend: { position: 'bottom' } },
-          scales: { y: { beginAtZero: true, grace: '15%' } }
+          plugins: {
+            legend: { position: 'bottom' },
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+              offset: 1,
+              color: '#334155',
+              font: { weight: 'bold', size: 10 },
+              formatter: (val) => val > 0 ? val : ''
+            }
+          },
+          scales: {
+            x: { stacked: false },
+            y: { beginAtZero: true, grace: '15%', ticks: { precision: 0 } }
+          }
         }
       });
     }
