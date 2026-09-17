@@ -465,9 +465,8 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT UTAMA (Disesuaikan untuk GitHub Pages) -->
+  <!-- JAVASCRIPT UTAMA -->
   <script>
-    // PASTE URL WEB APP APPS SCRIPT ANDA DI SINI
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxi7yte8kjW62ShjevVtA8AMiEsQgqoLtuQMsx1naoqmjQzhKzeo63sPOUnfCSig41v/exec';
 
     Chart.register(ChartDataLabels);
@@ -480,7 +479,6 @@
     let chartMpkInstance = null;
     let chartPartisipasiInstance = null;
 
-    // Helper untuk Fetch API ke Apps Script
     async function apiCall(action, payload = {}) {
       try {
         const response = await fetch(`${SCRIPT_URL}?action=${action}`, {
@@ -586,36 +584,34 @@
       });
     }
 
+    // FUNGSI DIPERBARUI: Mengatur seleksi paslon tunggal per kategori
     function pilihKandidat(jenis, id, nama) {
+      const containerId = (jenis === 'OSIS') ? 'paslon-osis-container' : 'paslon-mpk-container';
+      
+      // 1. Simpan objek pilihan ke variabel
       if (jenis === 'OSIS') {
         selectedOsis = { id, nama };
-        document.querySelectorAll('#paslon-osis-container .card-paslon').forEach(c => c.classList.remove('selected'));
-        document.querySelectorAll('#paslon-osis-container .btn-pilih').forEach(b => {
-          b.classList.remove('btn-success');
-          b.classList.add('btn-pilih');
-          b.innerHTML = '<i class="fa-solid fa-check-circle me-2"></i>PILIH OSIS INI';
-        });
-
-        document.getElementById(`card-${id}`).classList.add('selected');
-        const btn = document.getElementById(`btn-${id}`);
-        btn.classList.remove('btn-pilih');
-        btn.classList.add('btn-success');
-        btn.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>TERPILIH';
-
-      } else if (jenis === 'MPK') {
+      } else {
         selectedMpk = { id, nama };
-        document.querySelectorAll('#paslon-mpk-container .card-paslon').forEach(c => c.classList.remove('selected'));
-        document.querySelectorAll('#paslon-mpk-container .btn-pilih').forEach(b => {
-          b.classList.remove('btn-success');
-          b.classList.add('btn-pilih');
-          b.innerHTML = '<i class="fa-solid fa-check-circle me-2"></i>PILIH MPK INI';
-        });
+      }
 
-        document.getElementById(`card-${id}`).classList.add('selected');
-        const btn = document.getElementById(`btn-${id}`);
-        btn.classList.remove('btn-pilih');
-        btn.classList.add('btn-success');
-        btn.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>TERPILIH';
+      // 2. Reset tampilan semua kartu & tombol pada kontainer kategori tersebut
+      const container = document.getElementById(containerId);
+      
+      container.querySelectorAll('.card-paslon').forEach(card => card.classList.remove('selected'));
+      container.querySelectorAll('.btn-pilih, .btn-success').forEach(btn => {
+        btn.className = 'btn btn-pilih w-100';
+        btn.innerHTML = `<i class="fa-solid fa-check-circle me-2"></i>PILIH ${jenis} INI`;
+      });
+
+      // 3. Aktifkan status TERPILIH untuk paslon yang diklik
+      const selectedCard = document.getElementById(`card-${id}`);
+      const selectedBtn = document.getElementById(`btn-${id}`);
+
+      if (selectedCard) selectedCard.classList.add('selected');
+      if (selectedBtn) {
+        selectedBtn.className = 'btn btn-success w-100 fw-bold';
+        selectedBtn.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>TERPILIH';
       }
     }
 
